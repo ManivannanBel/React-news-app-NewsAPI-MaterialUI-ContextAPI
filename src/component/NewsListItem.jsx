@@ -29,7 +29,7 @@ function NewsListItem(props) {
 
   return (
       <React.Fragment>
-      <Link className={classes.link} to={`/new/tech/${title}`}>
+      <Link className={classes.link} to={`/news/tech/${title}`}>
       <Card className={classes.root}>
       <CardActionArea>
         <CardMedia

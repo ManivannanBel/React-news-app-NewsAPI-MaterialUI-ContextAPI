@@ -9,7 +9,7 @@ function Home() {
     };
     return (
         <div style={mystyle}>
-            Home
+        <NewsList/>
         <NewsList/>
         </div>
     )
