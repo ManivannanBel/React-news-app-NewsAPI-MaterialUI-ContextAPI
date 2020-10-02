@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: '500px',
-        width : '450px',
         marginTop: '5px',
         marginBottom: '5px'
       },
@@ -25,11 +24,13 @@ const useStyles = makeStyles((theme) => ({
 
 function NewsListItem(props) {
     const {description, title, urlToImage} = props.newsData;
+    const {catagory} = props;
+    
     const classes = useStyles();
 
   return (
       <React.Fragment>
-      <Link className={classes.link} to={`/news/tech/${title}`}>
+      <Link className={classes.link} to={`/news/${catagory}/${encodeURI(title)}`}>
       <Card className={classes.root}>
       <CardActionArea>
         <CardMedia

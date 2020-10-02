@@ -3,6 +3,7 @@ import NewsListItem from './NewsListItem';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import {NewsContext} from '../context/NewsContext';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -10,35 +11,45 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       maxWidth: '36ch',
       backgroundColor: theme.palette.background.paper,
+    },
+    catagory: {
+        backgroundColor : '#4290f5',
+        width: '100%',
+        maxWidth: '36ch',
+        margin: 'auto',
+        height: '40px',
+    },
+    primary: {
+        paddingTop: '10px',
+        color: '#ffff',
+        fontWeight: '600'
     }
   }));
 
-function NewsList() {
+function NewsList(props) {
     const classes = useStyles();
 
-    let [newsListData, setNewsListData] = useContext(NewsContext);
-    newsListData = Array.from(newsListData.values());
+    const {catagory} = props;
+
+    let newsListData;
+
+    const newsContext = useContext(NewsContext);
+    let [techNewsListData, businessNewsListData] = newsContext;
+    if(catagory === 'Technology'){
+        newsListData = Array.from(techNewsListData.values());
+    }else if(catagory === 'Business'){
+        newsListData = Array.from(businessNewsListData.values());
+    }
+    
     console.log(newsListData);
-    // const [newListData, setNewsListData] = useState([]);
-
-    // useEffect(() => {
-    //     fetchData();
-    // },[])
-
-    // const fetchData = async () => {
-    //     const data = await fetch(`http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=aa43233d73304f0c9e64523f8508e6e2`);
-    //     const jsonData = await data.json();
-    //     console.log(jsonData.articles);
-    //     setNewsListData(jsonData.articles);
-    // }
     
     const renderNewsList = () => {
-        //console.log()
-        return newsListData.map(news => <NewsListItem newsData={news} key={news.title}/>);
+        return newsListData.map(news => <NewsListItem newsData={news} catagory={catagory} key={news.title}/>);
     }
     
     return (
         <div>
+            <ListItemText className={classes.catagory} classes={classes} primary={catagory} />
             <List className={classes.root}>
                 {renderNewsList()}
             </List>

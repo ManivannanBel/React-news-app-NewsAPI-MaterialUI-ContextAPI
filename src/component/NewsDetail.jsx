@@ -15,16 +15,24 @@ const useStyles = makeStyles((theme) => ({
 function NewsDetail(props) {
     const classes = useStyles();
 
-    const [newsListData] = useContext(NewsContext);
+    const [techNewsListData, businessNewsListData] = useContext(NewsContext);
 
     const [news, setNews] = useState({});
 
     useEffect(() => {
-        console.log(newsListData);
-        console.log(newsListData.get(props.match.params.title));
-        console.log(props.match.params.title);
-        setNews(newsListData.get(props.match.params.title));
-    },[newsListData]);
+        // console.log(newsListData);
+        // console.log(newsListData.get(props.match.params.title));
+        // console.log(props.match.params.title);
+        switch(props.match.params.catagory){
+            case 'Technology':
+                setNews(techNewsListData.get(props.match.params.title));
+                break;
+            case 'Business':
+                setNews(businessNewsListData.get(props.match.params.title));
+                break;
+        }
+
+    },[techNewsListData, businessNewsListData]);
 
     return (
         <Container maxWidth="sm">
