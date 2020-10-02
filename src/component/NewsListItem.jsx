@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,14 +18,18 @@ const useStyles = makeStyles((theme) => ({
     inline: {
       display: 'inline',
     },
+    link: {
+        textDecoration : 'none'
+    }
   }));
 
 function NewsListItem(props) {
-    const {author, content, description, publishedAt, source, title, url, urlToImage} = props.newsData;
+    const {description, title, urlToImage} = props.newsData;
     const classes = useStyles();
 
   return (
       <React.Fragment>
+      <Link className={classes.link} to={`/new/tech/${title}`}>
       <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -44,6 +49,7 @@ function NewsListItem(props) {
         </CardContent>
       </CardActionArea>
     </Card>
+    </Link>
       </React.Fragment>
   );
 }
