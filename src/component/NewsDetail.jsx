@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop : '10px',
       marginBottom : '20px',
       fontWeight : '500',
+    },
+    img: {
+        width : '100%'
     }
   }));
 
@@ -40,7 +43,7 @@ function NewsDetail(props) {
             {news && 
             <React.Fragment>
             <h2>{news.title}</h2>
-            <img src={news.urlToImage}/>
+            <img className={classes.img} src={news.urlToImage}/>
             <h4>{news.description}</h4>
             <a href={news.url}>{news.content}</a>
             <div className={classes.author}>-{news.author}</div>

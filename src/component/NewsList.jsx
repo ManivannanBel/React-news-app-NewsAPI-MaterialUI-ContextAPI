@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     primary: {
         paddingTop: '10px',
         color: '#ffff',
-        fontWeight: '600'
+        fontWeight: '600',
     }
   }));
 

@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
       title: {
         flexGrow: 1,
       },
+      link: {
+        textDecoration : 'none',
+        color: '#ffff'
+      }
     }));
 
 function Header() {
@@ -30,7 +35,9 @@ function Header() {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" className={classes.title}>
-                News
+                <Link className={classes.link} to={`/`}>
+                    News
+                </Link>
               </Typography>
               <Button color="inherit">Home</Button>
               <Button color="inherit">Option</Button>
